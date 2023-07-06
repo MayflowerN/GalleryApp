@@ -33,7 +33,7 @@ struct Onboarding_1: View {
             }
         }
         .background(
-            Image("ellieBackground22")
+            Image("ellieBackground1")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
