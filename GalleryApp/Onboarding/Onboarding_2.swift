@@ -8,51 +8,60 @@
 import SwiftUI
 
 struct Onboarding_2: View {
-    @State var isActive:Bool = false
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            NavigationLink(destination: ContentView(), isActive: $isActive) {
-                Button(action: {
-                    isActive = true
-                }) {
-                    ZStack {
-                        Capsule()
-                            .fill(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.yellow]), startPoint: .leading, endPoint: .trailing))
-                            .frame(height: 45)
-                            .padding(.horizontal, 55)
-                            .padding(.vertical, 10)
-                        
-                        HStack {
-                            Text("Embrace the beauty within")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                                .multilineTextAlignment(.center)
-                            
-                            Image(systemName: "chevron.right")
-                                .font(.title)
-                                .foregroundColor(.white)
-                        }
-                        .padding()
-                        .shadow(radius: 5)
-                    }
-                    .frame(width: 400)
-                }
-            }
-            
-            Spacer()
-        }
-        .background(
-            Image("ellieBackground22")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        )
-        .navigationBarHidden(true)
-        }
+    @State var showContentView: Bool = false
     
+    var body: some View {
+        NavigationView {
+            GeometryReader { geometry in
+            
+                VStack {
+                    Spacer() // Move all the content to the bottom of the screen
+                    
+                    Text("Unleash Your Photo Journey Here!")
+                        .font(
+                            Font.custom("San Francisco Display", size: 31)
+                                .weight(.light)
+                        )
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .frame(width: 284, alignment: .top)
+                    
+                    Text("A Gallery filled with Visual Stories")
+                        .font(Font.custom("Raanana", size: 13))
+                        .foregroundColor(Color(red: 0.93, green: 0.93, blue: 0.93))
+                        .padding(5)
+                    
+                    
+                    Button(action: {
+                        showContentView = true
+                    }) {
+                        Text("Get Started")
+                            .font(
+                                Font.custom("SF Pro Display", size: 20)
+                                    .weight(.semibold)
+                            )
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                    }
+                    .foregroundColor(.clear)
+                    .frame(width: 302, height: 64)
+                    .background(Color(red: 1, green: 0.68, blue: 0.11))
+                    .cornerRadius(34)
+                    .fullScreenCover(isPresented: $showContentView) {
+                        ContentView()
+                    }
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(
+            Image("onboarding_2")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+            )
+            }
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
 }
 
 struct Onboarding_2_Previews: PreviewProvider {
@@ -60,3 +69,4 @@ struct Onboarding_2_Previews: PreviewProvider {
         Onboarding_2()
     }
 }
+
