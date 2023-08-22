@@ -17,7 +17,7 @@ struct Onboarding_2: View {
                 VStack {
                     Spacer() // Move all the content to the bottom of the screen
                     
-                    Text("Unleash Your Photo Journey Here!")
+                    Text("Your Inspiration in One App!")
                         .font(
                             Font.custom("San Francisco Display", size: 31)
                                 .weight(.light)
@@ -26,7 +26,7 @@ struct Onboarding_2: View {
                         .foregroundColor(.white)
                         .frame(width: 284, alignment: .top)
                     
-                    Text("A Gallery filled with Visual Stories")
+                    Text("Where I Share my Stories")
                         .font(Font.custom("Raanana", size: 13))
                         .foregroundColor(Color(red: 0.93, green: 0.93, blue: 0.93))
                         .padding(5)
@@ -35,7 +35,7 @@ struct Onboarding_2: View {
                     Button(action: {
                         showContentView = true
                     }) {
-                        Text("Get Started")
+                        Text("View Artwork")
                             .font(
                                 Font.custom("SF Pro Display", size: 20)
                                     .weight(.semibold)

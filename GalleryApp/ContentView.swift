@@ -12,7 +12,7 @@ struct ContentView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     @State var openMenu: Bool = false
     @State var aboutLink: Bool = false
-    @State var licenseLink: Bool = false
+    @State var aboutMeLink: Bool = false
     @State var tappedImage: Int? = nil
 
     init() {
@@ -39,9 +39,9 @@ struct ContentView: View {
                     .padding(.horizontal) // Add horizontal padding for the LazyVGrid
 
                     VStack {
-                        Text("50 Soap Bubbles").foregroundColor(.white).font(.title2)
+                        Text("Ellie Nguyen").foregroundColor(.white).font(.title2)
                         Text("See what's coming in the next update").foregroundColor(.white)
-                        Link("Follow Irisdesfera on Instagram >", destination: URL(string: "https:/www.codewithchris.com")!).foregroundColor(.blue)
+                        Link("Follow me on Instagram >", destination: URL(string: "https://www.instagram.com/ellienween/")!).foregroundColor(.blue)
                     }
                     .padding(.top, 20) // Add top padding
                     .padding(.bottom, 30) // Add bottom padding
@@ -55,7 +55,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-            .navigationBarTitle("Iridisfera", displayMode: .inline) // Set the navigation bar title
+            .navigationBarTitle("Zoom-in Zany", displayMode: .inline) // Set the navigation bar title
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $openMenu) { // Use sheet instead of fullScreenCover
                 NavigationView {
@@ -64,22 +64,25 @@ struct ContentView: View {
                         VStack(spacing: 30) {
                             Text("").padding(30)
                             NavigationLink(destination: AboutPage(), isActive: $aboutLink) {
-                                Button("About", action: {
+                                Button("About Zoom-in Zany", action: {
                                     aboutLink.toggle()
                                 }).font(.title)
                             }
 
-                            Button("App Icon", action: {
-                                openMenu.toggle()
-                            }).font(.title)
 
-                            NavigationLink(destination: WebView(request: URLRequest(url: URL(string: "https://iridisfera.app/legal/ios/")!)), isActive: $licenseLink) {
-                                Button("License Agreement", action: {
-                                    licenseLink.toggle()
+                            NavigationLink(destination: AboutMe(), isActive: $aboutMeLink) {
+                                Button("About Me", action: {
+                                    aboutMeLink.toggle()
                                 }).font(.title)
                             }
+                
 
-                            Link("Privacy Policy", destination: URL(string: "https://iridisfera.app/privacy/")!).font(.title)
+                            Link("Follow me on Facebook", destination: URL(string: "https://www.facebook.com/vi.y.nguyen/")!).font(.title)
+                            
+                            Link("Follow me on Instagram", destination: URL(string: "https://www.instagram.com/ellienween/")!).font(.title)
+                            Button("Back to App", action: {
+                                openMenu.toggle()
+                            }).font(.title)
 
                             Spacer()
                             Text("App Version 1.0").font(.subheadline).padding(20)
@@ -116,14 +119,24 @@ struct AboutPage: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 20) {
-                Text("About Iridisfera").font(.largeTitle).foregroundColor(.white).padding()
-                Text("After two years of the global pandemic, we all worked out ways of maintaining balance while social distancing. The soap film is my window; an extension of vision over great expanses. My name is Bogdan Chesaru. I made Iridisfera so you can wander with me.\n\nA soap film is a thin layer of water bounded by two layers of surfactant molecules. The iridescent colors arise from the interference of light waves reflecting off the front and back surfaces of the film. This natural phenomenon is known as thin-film interference.\n\nThank you for joining my soap bubble odyssey. If you want to make my day, leave a review.").font(.body).foregroundColor(.gray).multilineTextAlignment(.leading).frame(alignment: .topTrailing).padding()
+                Text("About Zoom-in Zany").font(.largeTitle).foregroundColor(.white).padding()
+                Text("Zoom-in Zany is my curated space where each snapshot tells a story from my informal photoshoots. It's more than just pictures; it's a wellspring of inspiration. Dive in to discover a tapestry of unique poses and innovative photography themes, designed to ignite your creativity and passion for arts.").font(.body).foregroundColor(.gray).multilineTextAlignment(.leading).frame(alignment: .topTrailing).padding()
                 Spacer()
             }
         }
     }
 }
-
+struct AboutMe: View {
+    var body: some View {
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("About Me").font(.largeTitle).foregroundColor(.white).padding()
+                Text(" I'm a self taught IOS developer, food adventurers, and photography enthusiasts. Zoom-in Zany is a collection of moments from my casual photoshoots. Through these images, I hope to offer a glimpse of different poses and photography themes, with the wish to inspire and share ideas with fellow enthusiasts.").font(.body).foregroundColor(.gray).multilineTextAlignment(.leading).frame(alignment: .topTrailing).padding()
+                Spacer()
+            }
+        }
+    }
+}
 struct WebView: UIViewRepresentable {
     let request: URLRequest
 
